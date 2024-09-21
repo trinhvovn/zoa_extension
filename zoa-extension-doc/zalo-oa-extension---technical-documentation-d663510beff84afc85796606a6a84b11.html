@@ -1,0 +1,692 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Zalo OA Extension - Technical Documentation </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d663510b-eff8-4afc-8579-6606a6a84b11" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📖</span></div><h1 class="page-title">Zalo OA Extension - Technical Documentation </h1><p class="page-description"></p></header><div class="page-body"><p id="5d9809d6-b6dc-4921-a0f2-9032ac1762ec" class="">👋 Welcome developers !!!</p><div id="3b186d67-90f2-4914-ad6d-127205c36b04" class="column-list"><div id="d8b21f2c-57ae-4dde-ab10-3fb9bc03587e" style="width:50%" class="column"><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="c0860463-0eae-407d-b029-37212e41da1b"><div style="font-size:1.5em"><span class="icon">👉🏽</span></div><div style="width:100%">Technical Documentation này giúp Extension Developer (ED) có thể test và trải nghiệm hiển thị của Extension trên OA Manager trong giai đoạn thử nghiệm. <ul id="e13d5a7c-450a-4dde-9b5a-81f14b4ea66f" class="bulleted-list"><li style="list-style-type:disc">Document version: 1.2</li></ul><ul id="44f94d64-08f5-4dd1-8013-c7fc76da6fd9" class="bulleted-list"><li style="list-style-type:disc">Cập nhật gần nhất: <time>@September 20, 2024</time> </li></ul><p id="244733c0-683f-4789-8fdb-b310ae6452c0" class="">Technical doc này được cập nhật tùy thời điểm, xem thêm lịch sử cập nhật tại: <a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Change%20log%20f9372bcc4ede46edafcff54c14baee2a.html"><span class="icon">🗒️</span>Change log</a> </p></div></figure><p id="234709b5-d387-47cd-9cce-8ac1f0136e97" class="">
+</p></div><div id="59e32703-26e4-4465-8a51-4f36d934a155" style="width:50%" class="column"><p id="f18952b6-9422-4d2a-997f-bae4578b189e" class="block-color-yellow"><strong>Table of Contents</strong></p><nav id="7825362c-e6dd-481f-bbc3-7d6e7ab4c787" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0bf2c316-a9d3-46a8-b3c6-0f02cfe2e2e1">🚀 Get Started</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#135cb626-078f-4d70-9bc4-4d99c4a601ed">💻 Technical setup &amp; development</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#91a8f6f6-b57d-4e5d-acf6-920164dd857b">Khởi tạo Zalo App và OA test</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#90cb8a89-744b-43f8-afbf-4fd66fed80ae">Thiết lập API và Webhook cần thiết</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1761a205-0c21-4185-960d-5847bda6edc6">Development </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fa7bbdd3-aad4-41d2-b84c-b68ad268a811">🌏 Business Overview </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#35a770e2-da6d-457a-9f94-8f87ea82c1a7">😎 Demo một số Use-cases</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#917e0514-b5b9-4155-9618-88ced9c6a7ca">📚 Shortcut</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1079797a-0d3b-8082-b820-f8b339e5d643">📚FAQ</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b5c9c938-fbaf-401c-96c0-b10d9298ba5b">Liên hệ</a></div></nav></div></div><p id="59536e55-9dcb-44d0-82a6-cfaa09b6e256" class="">
+</p><hr id="16c98ed6-401e-429c-9b09-36d8770de67d"/><h2 id="0bf2c316-a9d3-46a8-b3c6-0f02cfe2e2e1" class="">🚀 Get Started</h2><blockquote id="a6a01a57-1e54-4ffa-b7da-3c0bff079f51" class="block-color-default"><em><strong><span style="border-bottom:0.05em solid">Extension là gì? <br/><br/></span></strong></em>→ <em>Extension là ứng dụng được tạo ra với mục đích giúp OA giải quyết các tác vụ đơn giản, ít thao tác và trực quan trên công cụ OA Manager.</em></blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="02ca078b-53ec-4d57-befb-ca28e62c0bf5"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">03 hình dưới là demo một số vị trí hiển thị của Extension tại công cụ quản lý <a href="https://oa.zalo.me/manage/dashboard">OA Manager (bản web)</a> và OA Profile.<br/>ED vui lòng xem danh sách đầy đủ các vị trí Extension có thể hiển thị tại <br/><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Danh%20sa%CC%81ch%20UI%20zone%2084998681ac9640d3b86c103d7c51d57d.html"><span class="icon">🖍️</span>Danh sách UI zone</a></div></figure><figure id="f9372bcc-4ede-46ed-afcf-f54c14baee2a" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Change%20log%20f9372bcc4ede46edafcff54c14baee2a.html"><span class="icon">🗒️</span>Change log</a></figure><div id="8ce80571-d84e-43d0-a56c-b94fb89cff1c" class="collection-content"><h4 class="collection-title">Các vị trí Extension xuất hiện trên OA Manager</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th></tr></thead><tbody><tr id="06f6cc2a-d5ad-4b8f-96d9-0cd88fa4a19b"><td class="cell-title"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Ca%CC%81c%20vi%CC%A3%20tri%CC%81%20Extension%20xua%CC%82%CC%81t%20hie%CC%A3%CC%82n%20tre%CC%82n%20OA%20Man%208ce80571d84e43d0a56cb94fb89cff1c/%5BDemo%5D%20Extension%20ta%CC%A3i%20trang%20Chat%20OA%20Manager%2006f6cc2ad5ad4b8f96d90cd88fa4a19b.html">[Demo] Extension tại trang Chat OA Manager</a></td><td class="cell-?A=l"><time>@August 19, 2024 11:43 AM</time></td><td class="cell-My;z"></td></tr><tr id="19b1a184-af36-48a6-a449-563eeb5d8d39"><td class="cell-title"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Ca%CC%81c%20vi%CC%A3%20tri%CC%81%20Extension%20xua%CC%82%CC%81t%20hie%CC%A3%CC%82n%20tre%CC%82n%20OA%20Man%208ce80571d84e43d0a56cb94fb89cff1c/%5BDemo%5D%20Extension%20ta%CC%A3i%20Trang%20chu%CC%89%20OA%20Manager%2019b1a184af3648a6a449563eeb5d8d39.html">[Demo] Extension tại Trang chủ OA Manager</a></td><td class="cell-?A=l"><time>@August 19, 2024 11:43 AM</time></td><td class="cell-My;z"></td></tr><tr id="4a46fb90-74a2-4a09-8f2e-d34811b4bba5"><td class="cell-title"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Ca%CC%81c%20vi%CC%A3%20tri%CC%81%20Extension%20xua%CC%82%CC%81t%20hie%CC%A3%CC%82n%20tre%CC%82n%20OA%20Man%208ce80571d84e43d0a56cb94fb89cff1c/%5BDemo%5D%20Extension%20ta%CC%A3i%20trang%20OA%20Profile%204a46fb9074a24a098f2ed34811b4bba5.html">[Demo] Extension tại trang OA Profile </a></td><td class="cell-?A=l"><time>@August 19, 2024 1:11 PM</time></td><td class="cell-My;z"></td></tr><tr id="f64f57d5-0824-46c6-a0fb-5cca9ad74f8a"><td class="cell-title"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Ca%CC%81c%20vi%CC%A3%20tri%CC%81%20Extension%20xua%CC%82%CC%81t%20hie%CC%A3%CC%82n%20tre%CC%82n%20OA%20Man%208ce80571d84e43d0a56cb94fb89cff1c/Demo%20OA%20Profile%20Mobile%20f64f57d5082446c6a0fb5cca9ad74f8a.html">Demo OA Profile Mobile</a></td><td class="cell-?A=l"><time>@August 22, 2024 1:55 PM</time></td><td class="cell-My;z"></td></tr></tbody></table><br/><br/></div><p id="53fa7682-dc95-4741-922f-1531afd550ec" class="">
+</p><hr id="463f9a49-c204-4a24-8bda-13d87145e195"/><h2 id="135cb626-078f-4d70-9bc4-4d99c4a601ed" class="">💻 Technical setup &amp; development</h2><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="1ef6beed-e8df-4011-9c64-8e4471c1d2b0"><div style="font-size:1.5em"><span class="icon">👉🏽</span></div><div style="width:100%">- Tài liệu hướng dẫn dưới đây mô tả các bước nhằm giúp ED phát triển Extension trong giai đoạn Testing. Trong giai đoạn này, một số yêu cầu về quy trình đã được giản lược nhằm đẩy nhanh quá trình phát triển. <br/>- <br/><mark class="highlight-default">Khi go-live đến khách hàng, ED sẽ cần thực hiện đầy đủ các bước theo quy trình phát triển cơ bản </mark><mark class="highlight-default"><strong>(xem thêm quy trình cơ bản tại </strong></mark><mark class="highlight-default"><strong><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11.html">đây</a></strong></mark><mark class="highlight-default"><strong>).</strong></mark></div></figure><h3 id="91a8f6f6-b57d-4e5d-acf6-920164dd857b" class="">Khởi tạo Zalo App và OA test</h3><div id="86d6e27a-cb6e-4d50-966e-af9013954584" class="column-list"><div id="45526bdb-e236-48dd-900c-efba67b66dd9" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="efe56f44-bbea-4b1c-b05f-75b4e2959f75"><div style="font-size:1.5em"><span class="icon">👉🏽</span></div><div style="width:100%">ED cần thực hiện tạo mới Zalo App và OA test để phục vụ cho mục đích phát triển Extension<br/>Sau khi tạo Zalo App và OA Test thành công, ED cung cấp thông tin App_ID và OA_ID  để mở Zalo mở quyền phát triển Extension trong giai đoạn Testing. <br/></div></figure></div><div id="2d536bda-76f9-4641-a41a-3ae641c27e02" style="width:50%" class="column"><ul id="de573635-ff26-46cb-bdf4-c5be761a5d3f" class="bulleted-list"><li style="list-style-type:disc">Tham khảo<mark class="highlight-teal"> </mark><mark class="highlight-teal"><strong><a href="https://developers.zalo.me/docs/official-account/bat-dau/khoi-tao-ung-dung">Hướng dẫn khởi tạo Zalo App</a></strong></mark></li></ul><ul id="7a5c8346-071b-4ac6-9eb3-bb518ab2274d" class="bulleted-list"><li style="list-style-type:disc">Tham khảo hướng dẫn tạo OA test tại <mark class="highlight-teal"><strong><a href="https://oa.zalo.me/home/documents/vie/guides/tao-tai-khoan-oa-thu-nghiem-ky-thuat_4023591696049457534">đây</a></strong></mark><mark class="highlight-teal"><strong>.</strong></mark></li></ul><ul id="0e8e00d1-da7f-465c-829a-a3533dd21e54" class="bulleted-list"><li style="list-style-type:disc">Tham khảo các kênh liên hệ tại<mark class="highlight-teal"><strong> </strong></mark><mark class="highlight-teal"><strong><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11.html">đây</a></strong></mark><mark class="highlight-teal"><strong>. </strong></mark></li></ul></div></div><h3 id="90cb8a89-744b-43f8-afbf-4fd66fed80ae" class="">Thiết lập API và Webhook cần thiết</h3><div id="91ae23f9-5bf7-41db-9d17-e167528e846a" class="column-list"><div id="380716a3-efd1-42c6-a99b-054f28a32324" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2446013f-a574-4b24-906e-e23854433122"><div style="font-size:1.5em"><span class="icon">👉🏽</span></div><div style="width:100%">Extension cần thực hiện đăng ký sử dụng API cho app để thực hiện gọi API. <p id="82aac2f9-c39b-451d-ad8e-4327bf905abd" class="">Extension được cung cấp và sử dụng tất cả các resource API và Webhook của Zalo App. Ngoài các resource này, Extension sẽ được cung cấp thêm các resource đặc biệt. </p></div></figure></div><div id="808c9dd5-97cd-4e05-9fb9-46e29fd9d3de" style="width:50%" class="column"><figure id="ff69bb96-2790-446b-bd1a-ef809bb89a7e" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Flow%20tu%CC%9Bo%CC%9Bng%20ta%CC%81c%20user%20extension%20ff69bb962790446bbd1aef809bb89a7e.html">Flow tương tác user &lt;&gt; extension</a></figure><figure id="05c93f52-2a16-4752-aaf6-a80421ba73d3" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/zoaSdk%20ti%CC%81ch%20ho%CC%9B%CC%A3p%20sa%CC%86%CC%83n%20trong%20zoa-cli%2005c93f522a164752aaf6a80421ba73d3.html">zoaSdk tích hợp sẵn trong zoa-cli</a></figure><figure id="360c909d-b91f-40a9-8d96-4ca23537005a" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Bo%CC%A3%CC%82%20API%20va%CC%80%20Webhook%20da%CC%80nh%20rie%CC%82ng%20cho%20Extension%20360c909db91f40a98d964ca23537005a.html">Bộ API và Webhook dành riêng cho Extension</a></figure><p id="f01a0c06-9470-4880-b484-1f0969e49e3d" class="">
+</p></div></div><h3 id="1761a205-0c21-4185-960d-5847bda6edc6" class="">Development </h3><div id="1c6f9b64-47a2-4116-858f-513ede9ac220" class="column-list"><div id="3092698d-9215-49e5-a1fa-899471ed2ea8" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fe82d6ae-bdf6-4c8c-9e5d-127decc913a6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>READ ME</strong>!<ul id="539efe16-8fce-4c6c-a3ed-fa0cf1d280b7" class="bulleted-list"><li style="list-style-type:disc">Zalo OA command-line interface (ZOA-CLI) cho phép ED phát triển và deploy sản phẩm lên Zalo OA Extension Hub. Tham khảo:<ul id="dcdb03f8-e5f7-41f5-b36d-01a7301e4175" class="bulleted-list"><li style="list-style-type:circle">Link package: <a href="https://www.npmjs.com/package/zoa-cli">https://www.npmjs.com/package/zoa-cli</a></li></ul><ul id="32495505-97a8-4a5b-bcf3-cd02fa595b09" class="bulleted-list"><li style="list-style-type:circle">Link sample: <a href="https://github.com/zaloplatform/zoa-extension/tree/master/examples/simple-sample">https://github.com/zaloplatform/zoa-extension/tree/master/examples/simple-sample</a></li></ul></li></ul><ul id="d0a70228-2346-4456-9407-83e38ea5cd8f" class="bulleted-list"><li style="list-style-type:disc">Trong giai đoạn POC, chỉ có <strong>Zalo APP_ID được cấp quyền</strong> mới có thể truy cập trang quản lý version của Extension.</li></ul></div></figure></div><div id="63700950-9c88-4534-a903-9e0b00208a78" style="width:50%" class="column"><figure id="574272c2-b79e-4693-9071-8ce738298c12" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/%5BStep%201%5D%20ZOA-CLI%20574272c2b79e469390718ce738298c12.html">[Step 1] ZOA-CLI</a></figure><ul id="e9a6cd81-08e1-4eec-99b1-7e4ebb8c981e" class="bulleted-list"><li style="list-style-type:disc"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/%5BStep%201%5D%20ZOA-CLI%20574272c2b79e469390718ce738298c12/app-config%20json%20b09bc93f7134411383e0360710c23c65.html">app-config.json</a> </li></ul><ul id="3de5421a-2cf1-4488-ab48-8584b401e9f4" class="bulleted-list"><li style="list-style-type:disc"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/zoaSdk%20ti%CC%81ch%20ho%CC%9B%CC%A3p%20sa%CC%86%CC%83n%20trong%20zoa-cli%2005c93f522a164752aaf6a80421ba73d3.html">zoaSdk tích hợp sẵn trong zoa-cli</a> </li></ul><ul id="9bdb48f0-aef9-44ce-b536-8f04e9ec5d7c" class="bulleted-list"><li style="list-style-type:disc"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/%5BStep%201%5D%20ZOA-CLI%20574272c2b79e469390718ce738298c12/Hu%CC%9Bo%CC%9B%CC%81ng%20da%CC%82%CC%83n%20routing%20zone%20hie%CC%82%CC%89n%20thi%CC%A3%201658722ab1d446a2bc9819faf808f3ce.html">Hướng dẫn routing zone hiển thị</a> </li></ul><ul id="0f317d04-8f51-4407-89c3-8f962ee62ef6" class="bulleted-list"><li style="list-style-type:disc"> <a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Danh%20sa%CC%81ch%20UI%20zone%2084998681ac9640d3b86c103d7c51d57d.html"><span class="icon">🖍️</span>Danh sách UI zone</a> </li></ul><figure id="9f0825cf-850d-482a-bd04-713eae23093a" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/%5BStep%202%5D%20Trang%20qua%CC%89n%20ly%CC%81%20phie%CC%82n%20ba%CC%89n%209f0825cf850d482abd04713eae23093a.html">[Step 2] Trang quản lý phiên bản</a></figure><figure id="6b2fd2f3-70da-4da5-b602-8b9f498e2340" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/%5BStep%203%5D%20Trang%20qua%CC%89n%20ly%CC%81%20OA%20test%206b2fd2f370da4da5b6028b9f498e2340.html">[Step 3] Trang quản lý OA test</a></figure><p id="11cbdf97-6eee-40f5-8d91-7adcf33fbb26" class="">
+</p></div></div><hr id="d6cfb1aa-1348-41ae-9542-f80a79902a2f"/><div id="90377846-2eeb-4026-aefc-c02f9010f946" class="column-list"><div id="b12bfefc-ebe3-427f-841a-59bda3c8571d" style="width:100%" class="column"><h2 id="fa7bbdd3-aad4-41d2-b84c-b68ad268a811" class="block-color-default">🌏 Business Overview </h2><ul id="ea681cf3-ea4d-4db7-98fe-d58d8ad2937b" class="toggle"><li><details open=""><summary>Mục tiêu của Extension</summary><p id="404f9218-5838-425d-9bb5-1267ed2d6302" class="">Extension được tạo ra với mục đích giúp OA giải quyết các tác vụ đơn giản, ít thao tác và trực quan trên công cụ OA Manager.<div class="indented"><figure id="16883121-4046-415a-ac38-20c2b0f8d975" class="image"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/4497b455-d644-4a21-91fa-ce7de33d95bd.png"><img style="width:631.0920770877943px" src="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/4497b455-d644-4a21-91fa-ce7de33d95bd.png"/></a><figcaption>So sánh Extension và Zalo App</figcaption></figure></div></p></details></li></ul><ul id="896e0023-0cb1-4d37-bc37-24cc609e4f02" class="toggle"><li><details open=""><summary>Đối tượng sử dụng và tương tác với Extension</summary><ul id="ee149a66-0c83-4028-b370-e686d37064bc" class="bulleted-list"><li style="list-style-type:disc"><strong>OA Admin: </strong>Người cài đặt và sử dụng Extension trên trang OA Manager (Dashboard thống kê, Chat hoặc thiết lập trang Thông tin OA)</li></ul><ul id="e4edd65e-9543-4abf-9787-3785baa08a31" class="bulleted-list"><li style="list-style-type:disc"><strong>Zalo User</strong>: Khách hàng của Doanh nghiệp. User có thể tương tác với Extension tại trang OA Profile và các điểm chạm khác trên ứng dụng Zalo.</li></ul></details></li></ul><p id="66805e63-775b-460e-bf7f-8eae4cab0b27" class="">
+</p></div><div id="a85c0fb7-fe49-4b92-a4ce-1bb51e387186" style="width:100%" class="column"><h2 id="35a770e2-da6d-457a-9f94-8f87ea82c1a7" class="">😎 Demo một số Use-cases</h2><figure id="fcb4b3d2-2548-4902-9387-91a26d0eb2ee" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Use%20case%20pha%CC%81t%20voucher%20fcb4b3d225484902938791a26d0eb2ee.html"><span class="icon">🎟️</span>Use case phát voucher</a></figure><figure id="6b095c14-f8ce-499f-99b3-6d70cbe361d2" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Use%20case%20chat%20call%206b095c14f8ce499f99b36d70cbe361d2.html"><span class="icon">💬</span>Use case chat/call</a></figure><figure id="8d7290d1-4e88-41fd-a0cf-a22a4f7a4e62" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Use%20case%20dashboard%208d7290d14e8841fda0cfa22a4f7a4e62.html"><span class="icon">📊</span>Use case dashboard</a></figure></div><div id="a31eecec-c4c7-47f7-900e-49f10149885f" style="width:100%" class="column"><h2 id="917e0514-b5b9-4155-9618-88ced9c6a7ca" class="">📚 Shortcut</h2><figure id="84998681-ac96-40d3-b86c-103d7c51d57d" class="link-to-page"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Danh%20sa%CC%81ch%20UI%20zone%2084998681ac9640d3b86c103d7c51d57d.html"><span class="icon">🖍️</span>Danh sách UI zone</a></figure></div></div><h2 id="1079797a-0d3b-8082-b820-f8b339e5d643" class="">📚FAQ</h2><ul id="7af4eab6-b732-42b9-870b-1bc1b37bb428" class="toggle"><li><details open=""><summary>OA thanh toán chi phí sử dụng Extension qua hình thức nào?</summary><p id="202f743d-e165-40f7-8e0c-7f2f60459db2" class="">Tất cả chi phí phát sinh từ việc OA mua &amp; sử dụng Extension được trừ từ tài khoản (ví) ZCA đang liên kết với OA, bao gồm:</p><ul id="d8c29fe3-7f31-47f4-9b93-aaf893663eea" class="bulleted-list"><li style="list-style-type:disc">Chi phí mua Extension hàng tháng (Extension Subscription)</li></ul><ul id="a3582508-3c5d-4287-89c4-e7920f3cdaab" class="bulleted-list"><li style="list-style-type:disc">Chi phí gửi tin nhắn UID/ZNS,… thông qua Extension</li></ul></details></li></ul><ul id="f7554f88-3f3d-4ba7-a79a-da48035a5252" class="toggle"><li><details open=""><summary>Quy trình cơ bản để phát triển Extension là gì?</summary><p id="e0124c09-d08d-4a7e-bf07-904f3fa1b75d" class=""> Sau giai đoạn Testing, Zalo sẽ hoàn thiện và cập nhật thêm về quy trình phát triển Extension quá trình POC.</p><figure id="5c5bd01a-d920-48f4-86b9-c2462aee3480" class="image"><a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/90924c79-69bd-4ba3-891c-7b32191d4239.png"><img style="width:569.0795352993745px" src="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/90924c79-69bd-4ba3-891c-7b32191d4239.png"/></a></figure></details></li></ul><ul id="69202a9e-0cb9-47d8-b45e-4f22d63cf32f" class="toggle"><li><details open=""><summary>Các data mà extension được cung cấp là gì?</summary><p id="20aa80c6-11ab-4a35-842b-a542b93a38c8" class="">Extension sẽ nhận được data thông qua Webhook và thông qua hàm getSessionInfo từ <a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/zoaSdk%20ti%CC%81ch%20ho%CC%9B%CC%A3p%20sa%CC%86%CC%83n%20trong%20zoa-cli%2005c93f522a164752aaf6a80421ba73d3.html">zoaSdk tích hợp sẵn trong zoa-cli</a> </p><p id="3ee520df-7a33-470e-a360-5338815aeec9" class="">Cho mỗi zone, hệ thống sẽ chỉ trả ra các data tương ứng. Tham khảo <a href="Zalo%20OA%20Extension%20-%20Technical%20Documentation%20d663510beff84afc85796606a6a84b11/Danh%20sa%CC%81ch%20UI%20zone%2084998681ac9640d3b86c103d7c51d57d.html"><span class="icon">🖍️</span>Danh sách UI zone</a> mục zoaSDK.getSessionInfo</p><p id="9cf67dd0-1f33-48fd-8e15-585824628459" class="">
+</p></details></li></ul><hr id="f871ba15-5e76-431a-ac7e-f33fd97e0317"/><h2 id="b5c9c938-fbaf-401c-96c0-b10d9298ba5b" class="">Liên hệ</h2><p id="70e89936-fe2c-460c-aae0-9ffd295c3232" class="">ED vui lòng liên hệ qua các kênh sau</p><ul id="b00a2d69-c509-4713-b1b6-b29fe5578ba1" class="bulleted-list"><li style="list-style-type:disc">👩‍💻 Kênh Group Chat</li></ul><ul id="136ac950-22d4-497d-bfeb-5f1d88805266" class="bulleted-list"><li style="list-style-type:disc">📧 Email<ul id="77f97f49-0c00-4cef-b324-43b0de09a734" class="bulleted-list"><li style="list-style-type:circle">Địa chỉ email: <a href="mailto:extension.oa@vng.com.vn">extension.oa@vng.com.vn</a></li></ul><ul id="2fdbf442-d298-4bce-9a84-db477985fd51" class="bulleted-list"><li style="list-style-type:circle">Tiêu đề của email theo định dạng: [Extension Hub] Hỗ trợ <code>Tên đơn vị</code></li></ul></li></ul><p id="a29871e2-96e7-4804-9118-3b829d4876db" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

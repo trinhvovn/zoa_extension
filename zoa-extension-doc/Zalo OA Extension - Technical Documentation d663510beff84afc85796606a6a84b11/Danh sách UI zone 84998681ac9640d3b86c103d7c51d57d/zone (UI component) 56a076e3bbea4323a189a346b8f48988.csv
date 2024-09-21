@@ -1,0 +1,13 @@
+﻿Name,app-config.json,zoaSDK.getSessionInfo,Path,Status,Release date
+admin-dashboard-primary-area-block,roles,"admin_id, oaid","/extension/{appId}/zone/admin-dashboard-primary-area-block
+",Ready,"July 22, 2024"
+modal,,,,Ready,"August 19, 2024"
+admin-chat-message-toolbar-action,roles,"admin_id, oaid","/extension/{appId}/zone/admin-chat-message-toolbar-action
+",Ready,"August 19, 2024"
+admin-chat-message-profile-block,roles,"admin_id, oaid, user_id","/extension/{appId}/zone/admin-chat-message-profile-block
+",Ready,"August 19, 2024"
+admin-profile-config-action,roles,"admin_id, oaid","/extension/{appId}/zone/admin-profile-config-action
+",Ready,"August 21, 2024"
+" user-profile-config-block ",roles,"oaid, user_is_follower, user_last_interaction_date","/extension/{appId}/zone/user-profile-config-block
+",Ready,"August 21, 2024"
+admin-extension-config-block,roles,"admin_id, oaid",/extension/{appId}/zone/admin-extension-config-block,Ready,"September 19, 2024"
